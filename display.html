@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<div align="center">
+   <h1>USER INFORMATION</h1>
+   
+    <a th:href="@{/addUser}"><button class="btn btn-success">ADD USERS</button></a>
+</div>
+
+<div class="row">
+  <div class="col-3" th:each="user:${userInfo}">
+    <img th:src="@{/Temp.jpg}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h6 class="card-title">USER NAME:<span th:text="${user.userName}"></span></h6>
+      <h6 class="card-title">EMAIL ID:<span th:text="${user.userMail}"></span></h6>
+      <h6 class="card-title">CONTACT NO:<span th:text="${user.contactNo}"></span></h6>
+       </div>
+       <br>
+       <div class="card-footer">
+       <form th:action="@{/UpdateCurrentUser/{id}(id=${user.userId})}" method=get>
+      <button class="btn btn-warning">UPDATE</button>        
+      
+       </form>
+       <form th:action="@{/deleteCurrentUser/{id}(id=${user.userId})}" method=get>
+        <button class="btn btn-danger">DELETE</button>
+       </form>
+         
+       </div>
+  </div>
+
+</body>
+</html>
